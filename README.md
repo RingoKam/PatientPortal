@@ -12,3 +12,14 @@ patient record should be editable.
 - Data uploaded can be stored in SQL and should not be volatile (survive a restart).
 - An online Git based repository accessible to clone and review the code.
 ---
+# Summary
+
+### Backend
+* ASPNET CORE: BE Framework  
+* EF CORE 6: ORM to interact w/ SQL server
+* nswag: Swagger gen + Typescript definition gen
+
+### Frontend
+* Angular 14: FE framework
+* Angular Material 14: Component Library
+* ngx-dropzone: component to handle file upload

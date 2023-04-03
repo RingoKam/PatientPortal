@@ -18,7 +18,6 @@ namespace PatientPortalRepository
 
         public async Task Perform()
         {
-            _patientContext.Database.EnsureCreated();
             await _patientContext.Database.MigrateAsync();
         }
     }

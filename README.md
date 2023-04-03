@@ -23,6 +23,7 @@ The solution is consist of a number of prorjects:
 * ASPNET CORE: BE Framework  
 * EF CORE 6: ORM to interact w/ SQL server
 * nswag: Swagger gen + Typescript definition gen
+* nunit + moq: for testing
 
 ### Frontend
 * Angular 14: FE framework

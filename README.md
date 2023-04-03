@@ -12,8 +12,6 @@ patient record should be editable.
 - Data uploaded can be stored in SQL and should not be volatile (survive a restart).
 - An online Git based repository accessible to clone and review the code.
 ---
-# Summary
-
 ### Backend
 * ASPNET CORE: BE Framework  
 * EF CORE 6: ORM to interact w/ SQL server
@@ -23,3 +21,10 @@ patient record should be editable.
 * Angular 14: FE framework
 * Angular Material 14: Component Library
 * ngx-dropzone: component to handle file upload
+
+#### Landing Page
+![image](https://user-images.githubusercontent.com/10913199/229395971-e88eff93-820a-411d-adb7-b3f6848efbd4.png)
+#### Upload CSV
+![image](https://user-images.githubusercontent.com/10913199/229396051-273705cd-5fc6-408c-aebf-4da76b700aee.png)
+#### View Data
+![image](https://user-images.githubusercontent.com/10913199/229396097-f569e4c8-ddc1-4149-b061-31e6dc496b13.png)

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FileParameter, PatientClient } from '../web-api-client';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-csv-upload',
@@ -13,7 +14,8 @@ export class CsvUploadComponent {
   loading$ : BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
-    private patientClient: PatientClient
+    private patientClient: PatientClient,
+    private _snackBar: MatSnackBar
     ) { }
 
   onFileSelected(event: any) {
@@ -33,8 +35,9 @@ export class CsvUploadComponent {
       this.patientClient.fileUpload(formData)
         .subscribe(
           {
-            error: (er) => { window.alert("Failed to upload CSV") },
+            error: (er) => { this._snackBar.open("Upload failed", "❌") },
             next: () => {
+              this._snackBar.open("CSV Uploaded", "👍", { duration: 3000 })
               this.loading$.next(false);
               this.fileToUpload = [];
             }

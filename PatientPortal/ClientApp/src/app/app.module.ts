@@ -15,12 +15,13 @@ import { MatInputModule } from '@angular/material/input'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatButtonModule } from '@angular/material/button';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort'
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Custom Components
 import { AppComponent } from './app.component';
@@ -47,7 +48,7 @@ import { UpdatePatientComponent } from './update-patient/update-patient.componen
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'upload', component: CsvUploadComponent },
-      { path: 'view', component: ViewRecordsComponent } 
+      { path: 'view', component: ViewRecordsComponent }
     ]),
     MatTableModule,
     MatPaginatorModule,
@@ -60,6 +61,7 @@ import { UpdatePatientComponent } from './update-patient/update-patient.componen
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
+    MatSnackBarModule,
     MatNativeDateModule,
     NgxDropzoneModule,
     BrowserAnimationsModule

@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddOpenApiDocument((configure, serviceProvider) =>
+{
+    configure.Title = "Patient Portal API";
+});
 
 // Register Dependencies
 builder.Services.AddScoped<DbContextInitialiser>();
@@ -32,8 +36,12 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSwaggerUi3(settings =>
+{
+    settings.Path = "/api";
+    settings.DocumentPath = "/api/specification.json";
+});
 app.UseRouting();
-
 
 app.MapControllerRoute(
     name: "default",

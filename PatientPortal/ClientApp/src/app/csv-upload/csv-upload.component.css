@@ -1,0 +1,8 @@
+.ma-8 {
+    margin: 8px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,55 @@
+<div class="container">
+    <nav-bar [link]="'../upload'" [linkText]="'CSV Upload'"></nav-bar>
+    <mat-form-field class="example-full-width">
+        <mat-label>Filter By Name</mat-label>
+        <input 
+            matInput 
+            type="text" 
+            [ngModel]="nameFilter$ | async" 
+            (ngModelChange)="nameFilter$.next($event)"
+        >
+    </mat-form-field>
+    <div class="table-containers">
+        <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+        <table 
+            mat-table 
+            class="mat-elevation-z2" 
+            [dataSource]="dataSource"
+            matSort
+            (matSortChange)="sortState$.next($event)"
+        >
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="birthDay">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Birthday </th>
+                <td mat-cell *matCellDef="let element"> {{element.birthday | date}} </td>
+            </ng-container>
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+                <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+                No data Found...
+                </td>
+            </tr>   
+        </table>
+    </div>
+    <mat-paginator 
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of patient record">
+    </mat-paginator>
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <nav-bar [link]="'../view'" [linkText]="'View Data'"></nav-bar>
+  <div class="ma-8">
+    <ngx-dropzone accept=".csv" (change)="onFileSelected($event)">
+      <ngx-dropzone-label>Drag and drop your CSV file here</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of fileToUpload" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </div>
+  <div class="ma-8 flex-center">
+    <button mat-raised-button color="primary" matRipple [disabled]="loading$ | async" (click)="onSubmit($event)">Upload</button>
+  </div> 
+</div>
+

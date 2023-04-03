@@ -1,0 +1,59 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100%;
+    color: white;
+}
+
+.home {
+    grid-area: 1 / 1 / 3 / 2;
+    background: url("/assets/bg-texture.jpg") center;
+    color: black;
+}
+
+.upload {
+    grid-area: 1 / 2 / 2 / 3;
+    background-color: var(--accent-color);
+}
+
+.view {
+    grid-area: 2 / 2 / 3 / 3;
+    background-color: var(--warn-color);
+}
+
+@media only screen and (max-width: 600px) {
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .home {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .upload {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .view {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin: 0 5vw;
+    margin-bottom: 0.83em;
+}

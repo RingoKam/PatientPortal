@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+}
+
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+}
+
+.table-containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-containers mat-spinner {
+    position: absolute;
+}

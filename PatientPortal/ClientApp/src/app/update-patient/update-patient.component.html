@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Edit Patient</h1>
+<div mat-dialog-content>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="editableData.firstName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="editableData.lastName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <input matInput [(ngModel)]="editableData.gender">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Birthday</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="editableData.birthday">
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <button mat-button color="warn" [mat-dialog-close]="editableData" cdkFocusInitial>Update</button>
+</div>

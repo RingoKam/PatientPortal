@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePatientComponent } from '../update-patient/update-patient.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-records',
@@ -27,6 +28,7 @@ export class ViewRecordsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private _dialog: MatDialog,
+    private _snackBar: MatSnackBar,
     private _patientClient: PatientClient) {
   }
 
@@ -85,9 +87,10 @@ export class ViewRecordsComponent implements OnInit, AfterViewInit, OnDestroy {
     )
     .subscribe({
       next: (result) => {
+        this._snackBar.open("Record updated", "👍", { duration: 3000 })
         this.loading$.next(false)
       },
-      error: (err) => window.alert("An Error has occured while we are updating the model")
+      error: (err) =>  this._snackBar.open("Update failed", "❌")
     })
   }
 }

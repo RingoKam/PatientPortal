@@ -22,6 +22,8 @@ namespace PatientPortalApplication
         public async Task UploadPatientRecordCSV(List<IFormFile> files, CancellationToken cancellationToken)
         {
             var recordsToBeAdded = ParseCSV(files);
+            // since there can be many rows of record being inserted here. we can probably use bulk insert to speed things up
+            // maybe this? https://github.com/borisdj/EFCore.BulkExtensions
             await _context.AddRangeAsync(recordsToBeAdded, cancellationToken);
             _context.SaveChanges();
         }

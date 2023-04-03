@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientPortalRepository", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientDomain", "PatientDomain\PatientDomain.csproj", "{1C06A061-DCAD-4090-B596-68261241CF90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientPortalApplicationTests", "PatientPortalApplicationTests\PatientPortalApplicationTests.csproj", "{21E2DD14-69F3-4B43-BFF8-D1DA338B6B05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1C06A061-DCAD-4090-B596-68261241CF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C06A061-DCAD-4090-B596-68261241CF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C06A061-DCAD-4090-B596-68261241CF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E2DD14-69F3-4B43-BFF8-D1DA338B6B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E2DD14-69F3-4B43-BFF8-D1DA338B6B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E2DD14-69F3-4B43-BFF8-D1DA338B6B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E2DD14-69F3-4B43-BFF8-D1DA338B6B05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

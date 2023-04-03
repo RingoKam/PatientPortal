@@ -1,4 +1,5 @@
 using PatientPortalRepository;
+using PatientPortalApplication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+// Register Dependencies
 builder.Services.AddScoped<DbContextInitialiser>();
 builder.Services.AddPatientRepoDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 

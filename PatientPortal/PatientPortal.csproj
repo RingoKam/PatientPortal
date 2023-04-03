@@ -31,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PatientDomain\PatientDomain.csproj" />
+    <ProjectReference Include="..\PatientPortalApplication\PatientPortalApplication.csproj" />
     <ProjectReference Include="..\PatientPortalRepository\PatientPortalRepository.csproj" />
   </ItemGroup>
 

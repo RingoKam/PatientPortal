@@ -5,6 +5,8 @@ using System.Globalization;
 using PatientPortalApplication.Mapper;
 using PatientDomain.Model;
 using PatientPortalApplication.Interfaces;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace PatientPortalApplication
 {
@@ -22,6 +24,83 @@ namespace PatientPortalApplication
             var recordsToBeAdded = ParseCSV(files);
             await _context.AddRangeAsync(recordsToBeAdded, cancellationToken);
             _context.SaveChanges();
+        }
+
+        public async Task<PaginatedRecord<Patient>> GetList(string? sortField = null, SortOrder? sortOrder = null, string? filterByPatientName = null, int pageIndex = 0, int pageSize = 10)
+        {
+            var patientsQuery = from s in _context.Patients select s;
+
+            // Filter
+            if (!String.IsNullOrEmpty(filterByPatientName))
+            {
+                patientsQuery = patientsQuery.Where(s => s.LastName.Contains(filterByPatientName)
+                                       || s.FirstName.Contains(filterByPatientName));
+            }
+
+            //Sort
+            if (!string.IsNullOrEmpty(sortField) && sortOrder != null)
+            {
+                switch (sortField)
+                {
+                    case "firstName":
+                        patientsQuery = sortOrder == SortOrder.Descending
+                            ? patientsQuery.OrderByDescending(s => s.FirstName)
+                            : patientsQuery.OrderBy(s => s.FirstName);
+                        break;
+                    case "lastName":
+                        patientsQuery = sortOrder == SortOrder.Descending
+                            ? patientsQuery.OrderByDescending(s => s.LastName)
+                            : patientsQuery.OrderBy(s => s.LastName);
+                        break;
+                    case "gender":
+                        patientsQuery = sortOrder == SortOrder.Descending
+                            ? patientsQuery.OrderByDescending(s => s.Gender)
+                            : patientsQuery.OrderBy(s => s.Gender);
+                        break;
+                    case "birthDay":
+                        patientsQuery = sortOrder == SortOrder.Descending
+                            ? patientsQuery.OrderByDescending(s => s.Birthday)
+                            : patientsQuery.OrderBy(s => s.Birthday);
+                        break;
+                    case "id":
+                        patientsQuery = sortOrder == SortOrder.Descending
+                            ? patientsQuery.OrderByDescending(s => s.Id)
+                            : patientsQuery.OrderBy(s => s.Id);
+                        break;
+                }
+            }
+
+            var patientRecords = await PaginatedList<Patient>.CreateAsync(patientsQuery, pageIndex, pageSize);
+            var result = new PaginatedRecord<Patient>
+            {
+                Data = patientRecords,
+                HasNextPage = patientRecords.HasNextPage,
+                HasPreviousPage = patientRecords.HasPreviousPage,
+                Page = patientRecords.PageIndex,
+                PerPage = patientRecords.PageSize,
+                TotalPages = patientRecords.TotalPages,
+                Length = patientRecords.Length
+            };
+
+            return result;
+        }
+
+        public async Task<Patient> UpdatePatientRecord(Patient patient)
+        {
+            var recordToUpdate = await _context.Patients.FirstOrDefaultAsync(s => s.Id == patient.Id);
+
+            if(recordToUpdate == null)
+            {
+                throw new Exception("Record not found");
+            }
+
+            recordToUpdate.Birthday = patient.Birthday;
+            recordToUpdate.FirstName = patient.FirstName;
+            recordToUpdate.LastName = patient.LastName;
+            recordToUpdate.Gender = patient.Gender;
+
+            await _context.SaveChangesAsync();
+            return recordToUpdate;
         }
 
         private List<Patient> ParseCSV(List<IFormFile> files)

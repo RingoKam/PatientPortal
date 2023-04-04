@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -36,9 +36,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\error-util.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PatientDomain\PatientDomain.csproj" />
     <ProjectReference Include="..\PatientPortalApplication\PatientPortalApplication.csproj" />
     <ProjectReference Include="..\PatientPortalRepository\PatientPortalRepository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\error-util.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

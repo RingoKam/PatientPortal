@@ -353,8 +353,8 @@ export interface IPaginatedRecordOfPatient {
 
 export class Patient implements IPatient {
     id?: number;
-    firstName?: string;
-    lastName?: string;
+    firstName!: string;
+    lastName!: string;
     birthday?: Date;
     gender?: string;
 
@@ -397,8 +397,8 @@ export class Patient implements IPatient {
 
 export interface IPatient {
     id?: number;
-    firstName?: string;
-    lastName?: string;
+    firstName: string;
+    lastName: string;
     birthday?: Date;
     gender?: string;
 }

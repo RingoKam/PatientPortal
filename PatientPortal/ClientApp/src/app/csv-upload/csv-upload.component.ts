@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FileParameter, PatientClient } from '../web-api-client';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { resolveErrorMsg } from '../error-util';
 
 @Component({
   selector: 'app-csv-upload',
@@ -35,7 +36,11 @@ export class CsvUploadComponent {
       this.patientClient.fileUpload(formData)
         .subscribe(
           {
-            error: (er) => { this._snackBar.open("Upload failed", "❌") },
+            error: (er) => {
+              const msg = resolveErrorMsg(er, "Upload failed")
+              this._snackBar.open(msg, "❌")
+              this.loading$.next(false);
+            },
             next: () => {
               this._snackBar.open("CSV Uploaded", "👍", { duration: 3000 })
               this.loading$.next(false);

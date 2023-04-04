@@ -1,10 +1,5 @@
 ﻿using CsvHelper.Configuration;
-using PatientDomain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PatientPortalApplication.Mapper
 {
@@ -12,8 +7,12 @@ namespace PatientPortalApplication.Mapper
     {
         public PatientMapper()
         {
-            Map(m => m.FirstName).Name("First Name", "FirstName");
-            Map(m => m.LastName).Name("Last Name", "LastName");
+            Map(m => m.FirstName).Name("First Name", "FirstName").Validate(f => {
+                return !string.IsNullOrWhiteSpace(f.Field);
+            });
+            Map(m => m.LastName).Name("Last Name", "LastName").Validate(f => {
+                return !string.IsNullOrWhiteSpace(f.Field);
+            });
             Map(m => m.Birthday).Name("Birthday");
             Map(m => m.Gender).Name("Gender");
         }

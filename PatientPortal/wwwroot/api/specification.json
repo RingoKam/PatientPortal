@@ -215,16 +215,22 @@
       "Patient": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "firstName",
+          "lastName"
+        ],
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "birthday": {
             "type": "string",

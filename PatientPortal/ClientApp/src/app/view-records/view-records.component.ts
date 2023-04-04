@@ -6,6 +6,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePatientComponent } from '../update-patient/update-patient.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { resolveErrorMsg } from '../error-util';
 
 @Component({
   selector: 'app-view-records',
@@ -90,7 +91,11 @@ export class ViewRecordsComponent implements OnInit, AfterViewInit, OnDestroy {
         this._snackBar.open("Record updated", "👍", { duration: 3000 })
         this.loading$.next(false)
       },
-      error: (err) =>  this._snackBar.open("Update failed", "❌")
+      error: (err) => {
+        const msg = resolveErrorMsg(err, "Update failed")
+        this._snackBar.open(msg, "❌");
+        this.loading$.next(false)
+      }
     })
   }
 }

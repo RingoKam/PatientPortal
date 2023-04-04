@@ -91,7 +91,7 @@ namespace PatientPortalApplication
         {
             var recordToUpdate = await _context.Patients.FirstOrDefaultAsync(s => s.Id == patient.Id);
 
-            if(recordToUpdate == null)
+            if (recordToUpdate == null)
             {
                 throw new Exception("Record not found");
             }
